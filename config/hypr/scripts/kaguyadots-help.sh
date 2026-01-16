@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PROGRAM="$HOME/.local/bin/KaguyaDots-Settings"
-PID=$(pgrep -x "KaguyaDots-Settings")
+PROGRAM="$HOME/.local/bin/Kaguya-Settings"
+PID=$(pgrep -x "Kaguya-Settings")
 
 if [ -n "$PID" ]; then
   kill "$PID"

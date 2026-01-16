@@ -15,6 +15,6 @@ mode = "dynamic"
 
 [preferences]
 term = "kitty"
-browser = "zed"
+browser = "zen"
 shell = "fish"
 profile = "minimal"
