@@ -839,7 +839,7 @@ move_config() {
 
   # Install apps from apps directory
   install_app "Pulse" "$KAGUYAAPPSDIR/Pulse/build/bin/Pulse"
-  install_app "Kaguya-Settings" "$KAGUYAAPPSDIR/Kaguya-Help/build/bin/Kaguya-Settings"
+  install_app "Kaguya-Settings" "$KAGUYAAPPSDIR/KaguyaDots-Help/build/bin/Kaguya-Settings"
   install_app "Aoiler" "$KAGUYAAPPSDIR/Aoiler/build/bin/Aoiler"
 
   echo ""
