@@ -257,7 +257,7 @@ read_user_config() {
 
 # Get current and remote versions
 check_versions() {
-  remote_version=$(curl -s "https://raw.githubusercontent.com/KaguyaDots/KaguyaDots/main/version.txt" 2>/dev/null || echo "")
+  remote_version=$(curl -s "https://raw.githubusercontent.com/PcKaguya/KaguyaDots/main/version.txt" 2>/dev/null || echo "")
   if [ -z "$remote_version" ]; then
     gum style --foreground 196 "❌ Failed to fetch remote version"
     gum style --foreground 220 "Check your internet connection"
