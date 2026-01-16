@@ -10,4 +10,4 @@ Icon=org.kde.dolphin
 Terminal=false
 Categories=System;FileManager;
 MimeType=inode/directory;
-StartupNotify=false
+StartupNotify=true
