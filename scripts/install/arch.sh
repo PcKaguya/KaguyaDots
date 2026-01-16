@@ -971,10 +971,34 @@ setup_Waybar() {
   # Create new symlinks
   ln -s "$HOME/.config/waybar/style/default.css" "$WAYBAR_STYLE_SYMLINK"
   ln -s "$HOME/.config/waybar/configs/top" "$WAYBAR_CONFIG_SYMLINK"
-  ln -s "$HOME/.config/kaguya/kaguya.css" "$WAYBAR_COLOR_SYMLINK"
-  ln -s "$HOME/.config/kaguya/kaguya.css" "$SWAYNC_COLOR_SYMLINK"
+
+  # Prefer canonical 'kaguyadots' color file, but fall back to older paths if necessary.
+  if [ -f "$HOME/.config/kaguyadots/kaguyadots.css" ]; then
+    ln -s "$HOME/.config/kaguyadots/kaguyadots.css" "$WAYBAR_COLOR_SYMLINK"
+    ln -s "$HOME/.config/kaguyadots/kaguyadots.css" "$SWAYNC_COLOR_SYMLINK"
+  elif [ -f "$HOME/.config/kaguya_dots/kaguyadots.css" ]; then
+    ln -s "$HOME/.config/kaguya_dots/kaguyadots.css" "$WAYBAR_COLOR_SYMLINK"
+    ln -s "$HOME/.config/kaguya_dots/kaguyadots.css" "$SWAYNC_COLOR_SYMLINK"
+  elif [ -f "$KAGUYADIR/config/kaguya_dots/kaguyadots.css" ]; then
+    # Use the repository default as a last resort (useful during fresh installs)
+    ln -s "$KAGUYADIR/config/kaguya_dots/kaguyadots.css" "$WAYBAR_COLOR_SYMLINK"
+    ln -s "$KAGUYADIR/config/kaguya_dots/kaguyadots.css" "$SWAYNC_COLOR_SYMLINK"
+  else
+    # No color file found; create a small placeholder so Waybar doesn't error on startup.
+    mkdir -p "$(dirname "$WAYBAR_COLOR_SYMLINK")"
+    echo "/* Placeholder KaguyaDots colors - run the theme updater to generate real colors */" > "$WAYBAR_COLOR_SYMLINK"
+    echo "/* To regenerate colors: ~/.config/kaguyadots/scripts/update_kaguyadots_colors.sh */" >> "$WAYBAR_COLOR_SYMLINK"
+  fi
+
   ln -s "$HOME/.config/starship/starship.toml" "$STARSHIP_SYMLINK"
-  ln -s "$HOME/.config/hypr/hyprlock/kaguya-lock.conf" "$HYPRLOCK_SYMLINK"
+
+  # Prefer the new hyprlock filename if available
+  if [ -f "$HOME/.config/hypr/hyprlock/kaguyadots-lock.conf" ]; then
+    ln -s "$HOME/.config/hypr/hyprlock/kaguyadots-lock.conf" "$HYPRLOCK_SYMLINK"
+  elif [ -f "$HOME/.config/hypr/hyprlock/kaguya-lock.conf" ]; then
+    ln -s "$HOME/.config/hypr/hyprlock/kaguya-lock.conf" "$HYPRLOCK_SYMLINK"
+  fi
+
   gum style --foreground 82 "✓ Waybar configured!"
 }
 

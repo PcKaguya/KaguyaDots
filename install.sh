@@ -428,6 +428,26 @@ move_config() {
     gum style --foreground 220 "⚠ bashrc not found in config directory"
   fi
 
+  # Create compatibility symlink for older directory name (kaguya_dots -> kaguyadots)
+  if [ -d "$CONFIGDIR/kaguya_dots" ] && [ ! -e "$CONFIGDIR/kaguyadots" ]; then
+    fancy_echo "Creating compatibility symlink: $CONFIGDIR/kaguyadots -> $CONFIGDIR/kaguya_dots" "slide"
+    ln -s "$CONFIGDIR/kaguya_dots" "$CONFIGDIR/kaguyadots"
+  fi
+
+  # Ensure Waybar has a color.css; prefer the canonical kaguyadots path but fall back safely.
+  mkdir -p "$CONFIGDIR/waybar"
+  if [ -f "$CONFIGDIR/kaguyadots/kaguyadots.css" ]; then
+    ln -sf "$CONFIGDIR/kaguyadots/kaguyadots.css" "$CONFIGDIR/waybar/color.css"
+  elif [ -f "$CONFIGDIR/kaguya_dots/kaguyadots.css" ]; then
+    ln -sf "$CONFIGDIR/kaguya_dots/kaguyadots.css" "$CONFIGDIR/waybar/color.css"
+  elif [ -f "$KAGUYADOTS_DIR/config/kaguya_dots/kaguyadots.css" ]; then
+    # Use repository default as a last resort (useful for fresh installs)
+    ln -sf "$KAGUYADOTS_DIR/config/kaguya_dots/kaguyadots.css" "$CONFIGDIR/waybar/color.css"
+  else
+    # Create a minimal placeholder so Waybar won't fail on first run.
+    echo "/* KaguyaDots placeholder colors - run update_kaguyadots_colors.sh to generate real colors */" > "$CONFIGDIR/waybar/color.css"
+  fi
+
   # Install shell scripts
   install_shell_scripts
 
