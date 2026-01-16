@@ -22,7 +22,8 @@ func (a *App) GetPreferences() (PreferencesConfig, error) {
 		return PreferencesConfig{}, err
 	}
 
-	       configPath := filepath.Join(homeDir, ".config", "kaguyadots", "kaguyadots.toml")	file, err := os.Open(configPath)
+	configPath := filepath.Join(homeDir, ".config", "kaguyadots", "kaguyadots.toml")
+	file, err := os.Open(configPath)
 	if err != nil {
 		return PreferencesConfig{}, err
 	}
@@ -81,7 +82,8 @@ func (a *App) UpdatePreferences(config PreferencesConfig) error {
 		return err
 	}
 
-	       configPath := filepath.Join(homeDir, ".config", "kaguyadots", "kaguyadots.toml")	file, err := os.Open(configPath)
+	configPath := filepath.Join(homeDir, ".config", "kaguyadots", "kaguyadots.toml")
+	file, err := os.Open(configPath)
 	if err != nil {
 		return err
 	}
@@ -151,10 +153,10 @@ func (a *App) UpdatePreferences(config PreferencesConfig) error {
 // ValidatePreferences checks if the provided values are valid
 func (a *App) ValidatePreferences(config PreferencesConfig) error {
 	validTerms := map[string]bool{
-		"kitty":      true,
-		"alacritty":  true,
-		"ghostty":    true,
-		"foot":       true,
+		"kitty":     true,
+		"alacritty": true,
+		"ghostty":   true,
+		"foot":      true,
 	}
 
 	validShells := map[string]bool{
