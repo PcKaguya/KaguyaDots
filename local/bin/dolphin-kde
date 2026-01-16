@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+# dolphin-kde
+# Wrapper to launch Dolphin with KDE/Qt environment variables so it respects dark themes
+# and shows KDE-style app associations. Falls back to Flatpak (org.kde.dolphin) if the
+# system binary is not available and finally to xdg-open as a last resort.
+#
+# Usage:
+#   dolphin-kde /path/to/folder-or-file ...
+#
+# Make executable: chmod +x ~/.local/bin/dolphin-kde
+
+# Exit on errors
+set -eu
+
+# Prefer qt5ct/qt6ct and Breeze style so Qt apps match the dark GTK look
+export QT_QPA_PLATFORMTHEME="${QT_QPA_PLATFORMTHEME:-qt5ct}"
+export QT_STYLE_OVERRIDE="${QT_STYLE_OVERRIDE:-breeze}"
+export KDE_FULL_SESSION="${KDE_FULL_SESSION:-1}"
+
+# Ensure KDE is present in XDG_CURRENT_DESKTOP (append if something is already set)
+if [ -z "${XDG_CURRENT_DESKTOP:-}" ]; then
+  export XDG_CURRENT_DESKTOP="Hyprland:KDE"
+else
+  case ":${XDG_CURRENT_DESKTOP}:" in
+    *:KDE:* )
+      # already contains KDE, nothing to do
+      ;;
+    * )
+      export XDG_CURRENT_DESKTOP="${XDG_CURRENT_DESKTOP}:KDE"
+      ;;
+  esac
+fi
+
+# Try to run system dolphin, otherwise try Flatpak, otherwise fallback to xdg-open
+if command -v dolphin >/dev/null 2>&1; then
+  exec dolphin "$@"
+elif command -v flatpak >/dev/null 2>&1 && flatpak info org.kde.dolphin >/dev/null 2>&1; then
+  exec flatpak run --env=QT_QPA_PLATFORMTHEME=qt5ct --env=QT_STYLE_OVERRIDE=breeze --env=KDE_FULL_SESSION=1 org.kde.dolphin "$@"
+else
+  # As a last-resort, open the first path (or current dir) with xdg-open
+  if [ "$#" -gt 0 ]; then
+    exec xdg-open "$1"
+  else
+    exec xdg-open .
+  fi
+fi

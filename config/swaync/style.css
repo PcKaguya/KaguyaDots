@@ -1,0 +1,11 @@
+/* Fallback color variables — used when the wal colors file is missing to avoid a fully transparent control-center */
+@define-color foreground #cbd5e0;
+@define-color background #0f1720;
+@define-color color1 #a1764b;
+@define-color color6 #7cc3ff;
+@define-color background-sec #111111;
+@define-color color2 #f56565;
+
+@import "../../.cache/wal/colors-waybar.css";
+@import "themes/nova-dark/notifications.css";
+@import "themes/nova-dark/central_control.css";

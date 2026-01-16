@@ -1,0 +1,6 @@
+TODO for next version KaguyaDots 0.4.0 shy eagle
+
+- Add support for fedora and debian based distros
+- Add more waybar style and layouts
+- Curate some wallpaper maybe a seprate repo??
+- Add Widgets even tho eww exists in config the kinda dont work cause of gtk themeing

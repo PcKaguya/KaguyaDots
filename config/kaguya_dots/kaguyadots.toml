@@ -1,0 +1,20 @@
+# KaguyaDots Dotfiles Configuration
+# This file manages your KaguyaDots installation settings
+
+[metadata]
+version = "0.3.9 blind owl"
+install_date = "2025-10-15"
+last_update = "2025-10-15"
+repo_url = "https://github.com/PcKaguya/KaguyaDots.git"
+
+[theme]
+# Theme mode: "dynamic" or "static"
+# dynamic: Automatically updates system colors when wallpaper changes
+# static: Keeps colors unchanged regardless of wallpaper
+mode = "dynamic"
+
+[preferences]
+term = "kitty"
+browser = "zed"
+shell = "fish"
+profile = "minimal"

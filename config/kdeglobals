@@ -1,0 +1,16 @@
+# Minimal kdeglobals to prefer Breeze Dark color scheme for KDE/Qt apps.
+# Drop this file in ~/.config/kdeglobals to hint KDE applications to use
+# the Breeze dark color scheme and Breeze icons in non-Plasma sessions.
+#
+# Notes:
+# - Make sure the 'Breeze' icon theme and 'Breeze Dark' color scheme are installed on your system.
+# - For Qt apps to pick up KDE-style theming outside of Plasma, also set the Qt platform theme
+#   (e.g. via QT_QPA_PLATFORMTHEME=qt5ct/qt6ct) or include KDE in XDG_CURRENT_DESKTOP.
+#   See ~/.config/environment.d/90-kde.conf in this repo for an example.
+[General]
+ColorScheme=BreezeDark
+Name=Breeze Dark
+widgetStyle=Breeze
+
+[Icons]
+Theme=breeze

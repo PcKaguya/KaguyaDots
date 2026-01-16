@@ -1,0 +1,40 @@
+add_newline = false
+
+format = """
+[╭─](bold fg:#6B2C8F)[$time](fg:#8F3FBF) [::](bold fg:#B35FEF) $directory
+[╰─](bold fg:#6D388F)$character$cmd_duration"""
+
+[directory]
+truncation_length = 3
+format = "[$path]($style)"
+style = "bold fg:#E69FFF"
+
+[time]
+format = "[$time]($style)"
+time_format = "%H:%M"
+style = "bold fg:#C06FFF"
+disabled = false
+
+[cmd_duration]
+disabled = true
+min_time = 2
+format = " [$duration](fg:#F5BFFF)"
+
+[git_branch]
+disabled = true
+[username]
+disabled = true
+[hostname]
+disabled = true
+[package]
+disabled = true
+[git_status]
+disabled = true
+[git_commit]
+disabled = true
+[git_state]
+disabled = true
+[memory_usage]
+disabled = true
+[line_break]
+disabled = true

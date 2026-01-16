@@ -1,0 +1,94 @@
+# ─────────────────────────────
+# Global
+# ─────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+*.tmp
+*.bak
+*.old
+*.lock
+*.pid
+*~
+.cache/
+logs/
+temp/
+tmp/
+*.env
+.env.*
+
+# ─────────────────────────────
+# Go + Wails
+# ─────────────────────────────
+# Build outputs
+/apps/**/frontend/wailsjs/
+dist/
+
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# ─────────────────────────────
+# Go + Wails
+# ─────────────────────────────
+# Build outputs
+/apps/**/frontend/wailsjs/
+dist/
+
+# Binaries & temporary build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go module/vendor cache
+/apps/**/vendor/
+/apps/**/go.sum
+/apps/**/wails.json.md5
+
+# Wails-specific build metadata
+/apps/**/frontend/package.json.md5
+/apps/**/build-mac*
+/apps/**/build-windows*
+
+# ─────────────────────────────
+# Node / React / Vite frontend
+# ─────────────────────────────
+/apps/**/frontend/node_modules/
+# /apps/Pulse/frontend/node_modules
+/apps/**/frontend/dist/
+/apps/**/frontend/.vite/
+*.tsbuildinfo
+
+# ─────────────────────────────
+# OS / IDE / Editor junk
+# ─────────────────────────────
+# macOS
+.AppleDouble
+.LSOverride
+Icon?
+__MACOSX/
+
+# Linux
+.Trash-*
+.nfs*
+
+# Windows
+ehthumbs.db
+Desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# JetBrains
+*.iws
+*.ipr

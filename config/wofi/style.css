@@ -1,0 +1,54 @@
+@import "color.css";
+
+* {
+    font-family: SF Mono, monospace;
+}
+
+window {
+    background: @bg_rgba; /* Assuming bg_rgba gives desired opacity */
+    margin: 1px;
+    border: 2px solid @bg; /* Assuming 0c0e0f maps to bg or color0 */
+    border-radius: 15px 15px 15px 15px;
+}
+
+#input {
+    border: none;
+    box-shadow: none;
+    background-color: transparent; /* Assuming rgba(16, 18, 19, 0) is meant to be transparent */
+    color: @fg;
+}
+
+#inner-box {
+    margin: 5px;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 2px;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 15px 15px 15px 15px;
+}
+
+#text {
+    margin: 2px;
+    color: @fg; /* Assuming cdd6f4 maps to fg */
+}
+
+#entry {
+    background-color: transparent;
+}
+
+#entry:selected {
+    outline: none;
+    background-color: transparent;
+}
+
+#text:selected {
+    background: none;
+    color: @accent; /* Assuming ff7eb6 maps to accent */
+}
+
+#img:selected {
+    background: none;
+}

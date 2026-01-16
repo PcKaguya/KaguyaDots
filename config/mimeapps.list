@@ -1,0 +1,32 @@
+# Minimal mimeapps.list created by KaguyaDots
+# Provides reasonable "Open With" recommendations for common MIME types.
+# Edit these lines to suit installed apps on your machine. Desktop entries that
+# don't exist on the system will simply be ignored.
+#
+# Locations: ~/.config/mimeapps.list or ~/.local/share/applications/mimeapps.list
+# See https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html
+
+[Default Applications]
+inode/directory=dolphin-kde.desktop;org.kde.dolphin.desktop;
+text/plain=org.kde.kate.desktop;code.desktop;org.gnome.gedit.desktop;
+image/png=eog.desktop;gwenview.desktop;gimp.desktop;
+image/jpeg=eog.desktop;gwenview.desktop;gimp.desktop;
+image/svg+xml=eog.desktop;gwenview.desktop;
+video/mp4=mpv.desktop;vlc.desktop;
+audio/mpeg=vlc.desktop;mpv.desktop;
+application/pdf=org.kde.okular.desktop;evince.desktop;
+application/zip=org.gnome.FileRoller.desktop;ark.desktop;
+x-scheme-handler/http=org.mozilla.firefox.desktop;brave-browser.desktop;
+x-scheme-handler/https=org.mozilla.firefox.desktop;brave-browser.desktop;
+
+[Added Associations]
+inode/directory=dolphin-kde.desktop;org.kde.dolphin.desktop;nautilus.desktop;thunar.desktop;
+text/plain=org.kde.kate.desktop;code.desktop;org.gnome.gedit.desktop;
+image/png=eog.desktop;gwenview.desktop;gimp.desktop;
+image/jpeg=eog.desktop;gwenview.desktop;gimp.desktop;
+video/mp4=mpv.desktop;vlc.desktop;
+audio/mpeg=vlc.desktop;mpv.desktop;
+application/pdf=org.kde.okular.desktop;evince.desktop;
+application/zip=org.gnome.FileRoller.desktop;ark.desktop;
+x-scheme-handler/http=org.mozilla.firefox.desktop;brave-browser.desktop;
+x-scheme-handler/https=org.mozilla.firefox.desktop;brave-browser.desktop;

@@ -1,0 +1,182 @@
+# ────────────────────────────────────────────────────────────────
+# 🌟 Starship Prompt Configuration - DUMMY TEMPLATE
+# Generated: 2025-11-27 17:31:57
+# This file contains placeholder colors that get replaced by the script
+# DO NOT EDIT THE GENERATED starship.toml - edit ~/.config/starship/starship-dummy.toml !
+# ────────────────────────────────────────────────────────────────
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Add a blank line between prompts for readability
+add_newline = true
+
+# Reduce lag for modules
+command_timeout = 500
+
+# Main prompt layout
+format = """
+(bold #a1988a)$username $directory $git_branch $git_status $cmd_duration$fill
+(bold #a1988a)$character
+"""
+
+# ─── PROMPT SYMBOLS ─────────────────────────────────────────────
+[character]
+success_symbol = "[ ](bold #7A837D)"
+error_symbol = "[  ](bold #A1764B)"
+
+# ─── USER & HOST ────────────────────────────────────────────────
+
+[username]
+style_user = "bold #B28C5E"
+style_root = "bold #A1764B"
+format = "[$user]($style)"
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[@$hostname](bold #D09C66) "
+disabled = false
+
+# ─── DIRECTORY ──────────────────────────────────────────────────
+
+[directory]
+home_symbol = ""
+read_only = ""
+style = "bg:#C8BFAA fg:#000000"
+truncation_length = 3
+truncation_symbol = " ••/"
+format = '[](bold fg:#C8BFAA)[󰉋 $path]($style)[](bold fg:#C8BFAA)'
+
+# ─── GIT ────────────────────────────────────────────────────────
+
+[git_branch]
+symbol = "󰘬 "
+format = "on [$symbol$branch]($style) "
+style = "bold #DDB88C"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold #A1764B"
+conflicted = "🏳 "
+ahead = "⇡${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+behind = "⇣${count} "
+untracked = "?${count} "
+stashed = "💾${count} "
+modified = "!${count} "
+staged = "+${count} "
+renamed = "»${count} "
+deleted = "✘ ${count} "
+
+# ─── LANGUAGES ──────────────────────────────────────────────────
+
+[nodejs]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold #a1988a"
+
+[python]
+symbol = " "
+style = "bold #B28C5E"
+
+[rust]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold #A1764B"
+
+[java]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold #A1764B"
+
+[package]
+symbol = " "
+format = "[$symbol$version]($style)"
+style = "bold #D09C66"
+
+[golang]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold #7A837D"
+
+[lua]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold #D09C66"
+
+# ─── MISC MODULES ───────────────────────────────────────────────
+
+[cmd_duration]
+min_time = 500
+format = "[took $duration](bold #B28C5E) "
+
+[time]
+disabled = false
+format = "[$time](dim #a1988a)"
+time_format = "%R"  # 24h format
+
+[fill]
+symbol = " "
+
+# ─── BATTERY / OS / EXTRAS ──────────────────────────────────────
+
+[battery]
+disabled = false
+full_symbol = "🔋"
+charging_symbol = "⚡"
+discharging_symbol = "💀"
+format = "[$symbol $percentage]($style) "
+
+[[battery.display]]
+threshold = 10
+style = "bold #A1764B"
+
+[[battery.display]]
+threshold = 30
+style = "bold #B28C5E"
+
+[[battery.display]]
+threshold = 100
+style = "bold #a1988a"
+
+[os]
+disabled = false
+format = "[$symbol]($style)"
+style = "dim #e7dac6"
+
+[os.symbols]
+Arch = " "
+Ubuntu = " "
+Debian = " "
+Fedora = " "
+Manjaro = " "
+NixOS = " "
+Pop = " "
+Raspbian = " "
+
+
+# ─── DOCKER / KUBERNETES ────────────────────────────────────────
+
+[docker_context]
+symbol = " "
+format = "via [$symbol$context](bold #D09C66) "
+
+[kubernetes]
+symbol = "☸ "
+format = 'on [$symbol$context( \($namespace\))](bold #D09C66) '
+disabled = false
+
+# ─── CLOUD PROVIDERS ────────────────────────────────────────────
+
+[aws]
+symbol = " "
+format = 'on [$symbol($profile )($region )](bold #B28C5E) '
+
+[gcloud]
+format = 'on [$symbol$account(@$domain)($region)](bold #D09C66) '
+
+[azure]
+symbol = " "
+format = 'on [$symbol($subscription)](bold #D09C66) '
+
+# ─── END OF FILE ────────────────────────────────────────────────

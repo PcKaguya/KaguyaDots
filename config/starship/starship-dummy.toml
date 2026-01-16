@@ -1,0 +1,200 @@
+# ────────────────────────────────────────────────────────────────
+# 🌟 Starship Prompt Configuration - DUMMY TEMPLATE
+# This file contains placeholder colors that get replaced by the script
+# DO NOT EDIT THE GENERATED starship.toml - edit ~/.config/starship/starship-dummy.toml !
+# ────────────────────────────────────────────────────────────────
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Add a blank line between prompts for readability
+add_newline = true
+
+# Reduce lag for modules
+command_timeout = 500
+
+# Main prompt layout
+format = """$env_var$os$username$directory$git_branch$git_status
+$character
+"""
+
+# ─── PROMPT SYMBOLS ─────────────────────────────────────────────
+[character]
+success_symbol = "╰⎯"
+error_symbol = "╰⎯"
+
+# ─── ENV VAR ────────────────────────────────────────────────────
+[env_var]
+symbol = "╭╴"
+variable = 'SHELL'
+format = "$symbol"
+disabled = false
+
+# ─── OS ─────────────────────────────────────────────────────────
+[os]
+format = '[$symbol](bold color7) ' # Using color7 for white
+disabled = false
+
+[os.symbols]
+Windows = ' '
+Arch = '󰣇'
+Ubuntu = ''
+Macos = '󰀵'
+Unknown = '󰠥'
+
+# ─── USER & HOST ────────────────────────────────────────────────
+
+[username]
+style_user = "bold color3" # Yellow bold
+style_root = "bold color0" # Black bold
+format = '[//](color7 bold) [$user](color1) ' # white bold, red
+
+[hostname]
+ssh_only = false
+format = "[@$hostname](bold color4) "
+disabled = true # Disable hostname as it's not in dotfiles-master's format
+
+# ─── DIRECTORY ──────────────────────────────────────────────────
+
+[directory]
+truncation_length = 0
+truncation_symbol = '…/'
+home_symbol = '~'
+# read_only_style = '197' read_only = '  '
+format = '[//](color7 bold) [$path](color7)[$read_only](color7) ' # white bold, light gray
+style = "color7" # Light gray
+
+# ─── GIT ────────────────────────────────────────────────────────
+
+[git_branch]
+symbol = ' '
+format = '[//](color7 bold) [$symbol\[$branch\]](color2) ' # white bold, green
+style = "bold color2" # Bold green
+
+[git_status]
+disabled = true
+format = '[ $all_status $ahead_behind](color2) ' # green
+style = "bold color2" # Bold green
+conflicted = '🏳'
+up_to_date = ''
+untracked = ' '
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+stashed = ' '
+modified = ' '
+staged = '[++\($count\)](color2)' # green
+renamed = '襁 '
+deleted = ' '
+
+# ─── LANGUAGES ──────────────────────────────────────────────────
+
+[nodejs]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold color8"
+
+[python]
+symbol = " "
+style = "bold color3"
+
+[rust]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold color1"
+
+[java]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold color1"
+
+[package]
+symbol = " "
+format = "[$symbol$version]($style)"
+style = "bold color4"
+
+[golang]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold color2"
+
+[lua]
+symbol = " "
+format = "via [$symbol($version )]($style)"
+style = "bold color4"
+
+# ─── MISC MODULES ───────────────────────────────────────────────
+
+[cmd_duration]
+min_time = 500
+format = "[took $duration](bold color3) "
+
+[time]
+disabled = false
+format = "[$time](dim color8)"
+time_format = "%R"  # 24h format
+
+[fill]
+symbol = " "
+
+# ─── BATTERY / OS / EXTRAS ──────────────────────────────────────
+
+[battery]
+disabled = false
+full_symbol = "🔋"
+charging_symbol = "⚡"
+discharging_symbol = "💀"
+format = "[$symbol $percentage]($style) "
+
+[[battery.display]]
+threshold = 10
+style = "bold color1"
+
+[[battery.display]]
+threshold = 30
+style = "bold color3"
+
+[[battery.display]]
+threshold = 100
+style = "bold color8"
+
+[os]
+disabled = false
+format = "[$symbol]($style)"
+style = "dim color7"
+
+[os.symbols]
+Arch = " "
+Ubuntu = " "
+Debian = " "
+Fedora = " "
+Manjaro = " "
+NixOS = " "
+Pop = " "
+Raspbian = " "
+
+
+# ─── DOCKER / KUBERNETES ────────────────────────────────────────
+
+[docker_context]
+symbol = " "
+format = "via [$symbol$context](bold color4) "
+
+[kubernetes]
+symbol = "☸ "
+format = 'on [$symbol$context( \($namespace\))](bold color4) '
+disabled = false
+
+# ─── CLOUD PROVIDERS ────────────────────────────────────────────
+
+[aws]
+symbol = " "
+format = 'on [$symbol($profile )($region )](bold color3) '
+
+[gcloud]
+format = 'on [$symbol$account(@$domain)($region)](bold color4) '
+
+[azure]
+symbol = " "
+format = 'on [$symbol($subscription)](bold color4) '
+
+# ─── END OF FILE ────────────────────────────────────────────────
