@@ -16,7 +16,7 @@ NC='\033[0m'
 KAGUYADOTS_DIR="$HOME/KaguyaDots"
 KAGUYADOTSAPPSDIR="$HOME/KaguyaDots/apps"
 
-REPO_URL="https://github.com/KaguyaDots/KaguyaDots.git"
+REPO_URL="https://github.com/PcKaguya/KaguyaDots.git"
 # https://github.com/Nurysso/KaguyaDots/blob/main/scripts/install/arch.sh
 # https://raw.githubusercontent.com/Nurysso/KaguyaDots/refs/heads/main/scripts/install/arch.sh
 SCRIPT_BASE_URL="https://raw.githubusercontent.com/PcKaguya/KaguyaDots/main/scripts/install"
