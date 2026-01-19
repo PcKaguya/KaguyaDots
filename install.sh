@@ -307,6 +307,51 @@ run_os_script() {
   fi
 }
 
+# Set script permissions in the cloned repo
+set_repo_script_permissions() {
+  gum style --border double --padding "1 2" --border-foreground 212 "Setting Script Permissions"
+  
+  if [ -d "$KAGUYADOTS_DIR/config" ]; then
+    find "$KAGUYADOTS_DIR/config" -type f -name "*.sh" -exec chmod +x {} +
+    fancy_echo "✓ Script permissions set in cloned repository."
+  else
+    gum style --foreground 220 "⚠ Config directory not found in repo, skipping permission set."
+  fi
+}
+
+# Build Wails applications
+build_apps() {
+  gum style --border double --padding "1 2" --border-foreground 212 "Building Helper Applications"
+
+  if ! command -v wails &>/dev/null; then
+    gum style --foreground 220 "ℹ Wails CLI not found. Using pre-built application binaries."
+    gum style --foreground 220 "  To build from source, install Wails (wails.io) and re-run."
+    return
+  fi
+
+  if gum confirm "Wails CLI detected. Do you want to rebuild the helper applications from source?"; then
+      local apps_dir="$KAGUYADOTS_DIR/apps"
+      local apps_to_build=("KaguyaDots-Help" "Pulse" "Aoiler")
+
+      for app in "${apps_to_build[@]}"; do
+        local app_path="$apps_dir/$app"
+        if [ -d "$app_path" ]; then
+          fancy_echo "Building $app..." "slide"
+          # The (cd ... && wails build) runs in a subshell, so output is clean
+          if (cd "$app_path" && wails build); then
+            fancy_echo "✓ $app built successfully!"
+          else
+            gum style --foreground 196 "✗ Error building $app! Check for errors above."
+          fi
+        else
+          gum style --foreground 220 "⚠ App directory not found: $app_path"
+        fi
+      done
+  else
+      gum style --foreground 82 "✓ Skipping app rebuild. Using pre-built binaries."
+  fi
+}
+
 # Clone dotfiles
 clone_dotfiles() {
   gum style --border double --padding "1 2" --border-foreground 212 "Cloning KaguyaDots Dotfiles"
@@ -528,7 +573,7 @@ backup_config() {
 }
 # Main function
 main() {
-  # Parse arguments inline
+  # Parse arguments
   case "${1:-}" in
     --help | -h)
       clear
@@ -571,15 +616,18 @@ main() {
       exit 0
       ;;
     --no-deps)
-        # These steps run for both full install and --no-deps
-        backup_config
-        echo ""
-
-        clone_dotfiles
-        echo ""
-
-        move_config
-        echo ""
+      # No-deps workflow
+      backup_config
+      echo ""
+      clone_dotfiles
+      echo ""
+      set_repo_script_permissions
+      echo ""
+      build_apps
+      echo ""
+      move_config
+      echo ""
+      exit 0
       ;;
     -*)
       echo -e "${RED}Unknown option: $1${NC}"
@@ -588,16 +636,10 @@ main() {
       ;;
   esac
 
-  # Detect OS first (needed before gum check)
+  # Full installation workflow
   detect_os
-
-  # Check deps install gum if needed
   check_dependencies
-
-  # Check for tte
   check_tte
-
-  # Now we can use gum for pretty output
   clear
 
   if command -v tte &>/dev/null; then
@@ -620,7 +662,18 @@ main() {
   echo ""
   check_OS
   echo ""
-    run_os_script
+  run_os_script
+
+  backup_config
+  echo ""
+  clone_dotfiles
+  echo ""
+  set_repo_script_permissions
+  echo ""
+  build_apps
+  echo ""
+  move_config
+  echo ""
 }
 
 # Run main function with arguments
